@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connecting TikTok | ViralSpawnTV</title>
+
+  <style>
+    body {
+      background: #080b12;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .box {
+      max-width: 600px;
+      margin: auto;
+      background: #111827;
+      padding: 40px;
+      border-radius: 16px;
+    }
+
+    h1 {
+      color: #39ff14;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <h1>ViralSpawnTV</h1>
+    <h2>Connecting TikTok...</h2>
+
+    <p>
+      TikTok authorization is being completed securely.
+    </p>
+
+    <p>Please wait.</p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    const allowedParams = [
+      "code",
+      "state",
+      "error",
+      "error_description"
+    ];
+
+    const forwarded = new URLSearchParams();
+
+    for (const name of allowedParams) {
+      const value = params.get(name);
+
+      if (value !== null) {
+        forwarded.set(name, value);
+      }
+    }
+
+    const workerCallback =
+      "https://viralspawntv-tiktok.srwalker3333.workers.dev/callback";
+
+    window.location.replace(
+      workerCallback + "?" + forwarded.toString()
+    );
+  </script>
+
+</body>
+</html>
