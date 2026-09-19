@@ -1,58 +1,79 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>TikTok Authorization | ViralSpawnTV</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connecting TikTok | ViralSpawnTV</title>
 
   <style>
     body {
-      margin: 0;
-      background: #080b10;
-      color: #f3f6f8;
+      background: #080b12;
+      color: white;
       font-family: Arial, sans-serif;
-      line-height: 1.65;
+      text-align: center;
+      padding: 80px 20px;
     }
 
-    main {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 56px 24px;
+    .box {
+      max-width: 600px;
+      margin: auto;
+      background: #111827;
+      padding: 40px;
+      border-radius: 16px;
     }
 
     h1 {
-      color: #7cff00;
+      color: #39ff14;
     }
 
-    a {
-      color: #33c7ff;
-    }
-
-    .card {
-      background: #101722;
-      border: 1px solid #243044;
-      border-radius: 14px;
-      padding: 24px;
-      margin: 22px 0;
+    p {
+      line-height: 1.6;
     }
   </style>
 </head>
 
 <body>
-  <main>
-    <h1>TikTok Authorization</h1>
 
-    <div class="card">
-      <p>
-        Authorization has returned to ViralSpawnTV Automation.
-      </p>
+  <div class="box">
+    <h1>ViralSpawnTV</h1>
+    <h2>Connecting TikTok...</h2>
 
-      <p>
-        You may close this page after the authorization process completes.
-      </p>
-    </div>
+    <p>
+      TikTok authorization is being completed securely.
+    </p>
 
-    <p><a href="index.html">Return home</a></p>
-  </main>
+    <p>
+      Please wait.
+    </p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    const allowedParams = [
+      "code",
+      "state",
+      "error",
+      "error_description"
+    ];
+
+    const forwarded = new URLSearchParams();
+
+    for (const name of allowedParams) {
+      const value = params.get(name);
+
+      if (value !== null) {
+        forwarded.set(name, value);
+      }
+    }
+
+    const workerCallback =
+      "https://viralspawntv-tiktok.srwalker3333.workers.dev/callback";
+
+    window.location.replace(
+      workerCallback + "?" + forwarded.toString()
+    );
+  </script>
+
 </body>
 </html>
